@@ -7,7 +7,7 @@ public class InputService {
 
     public String getNumbersSequence() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter numbers sequence");
+        System.out.println("Enter numbers sequence:");
         String input = scanner.nextLine();
         String trimmedInput = input.trim();
         String[] numbers = trimmedInput.split("\\s+");

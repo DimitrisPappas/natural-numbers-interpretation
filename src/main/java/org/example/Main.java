@@ -5,6 +5,15 @@ public class Main {
 
         System.out.println("App initialization");
         InputService inputService = new InputService();
-        System.out.println(inputService.getNumbersSequence());
+        GreekNumberValidation greekNumberValidation = new GreekNumberValidation();
+
+        String number = inputService.getNumbersSequence();
+        System.out.println("Phone Number: " + number);
+
+        if (greekNumberValidation.isValid(number)) {
+            System.out.println("phone number: VALID");
+        } else {
+            System.out.println("phone number: INVALID");
+        }
     }
 }
