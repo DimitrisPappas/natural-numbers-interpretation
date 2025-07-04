@@ -4,16 +4,13 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("App initialization");
-        InputService inputService = new InputService();
-        GreekNumberValidation greekNumberValidation = new GreekNumberValidation();
+        SingleNumberSequenceService singleNumberSequenceService = new SingleNumberSequenceService();
+        AmbiguitiesService ambiguitiesService = new AmbiguitiesService();
 
-        String number = inputService.getNumbersSequence();
-        System.out.println("Phone Number: " + number);
+        // Get a single sequence of numbers
+        singleNumberSequenceService.getSingleNumberSequenceService();
 
-        if (greekNumberValidation.isValid(number)) {
-            System.out.println("phone number: VALID");
-        } else {
-            System.out.println("phone number: INVALID");
-        }
+        // Identify natural number ambiguities
+        ambiguitiesService.getAmbiguitiesService();
     }
 }
