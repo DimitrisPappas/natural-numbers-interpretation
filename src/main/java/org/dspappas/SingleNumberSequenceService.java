@@ -10,7 +10,7 @@ public class SingleNumberSequenceService {
         this.greekNumberValidation = new GreekNumberValidation();
     }
 
-    public void getSingleNumberSequenceService() {
+    public void getSingleNumberSequence() {
         System.out.println("Get a single sequence of numbers");
         String number = inputService.getNumbersSequence();
         System.out.println("number: " + number);
