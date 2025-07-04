@@ -1,4 +1,4 @@
-package org.dspappas;
+package org.example;
 
 import org.jetbrains.annotations.NotNull;
 import java.util.Scanner;
