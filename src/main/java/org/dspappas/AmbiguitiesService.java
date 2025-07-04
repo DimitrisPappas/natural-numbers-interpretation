@@ -8,7 +8,7 @@ public class AmbiguitiesService {
         this.greekNumberValidation = new GreekNumberValidation();
     }
 
-    public void getAmbiguities() {
+    public void getAmbiguitiesService() {
         System.out.println("Identify natural number ambiguities");
     }
 }
