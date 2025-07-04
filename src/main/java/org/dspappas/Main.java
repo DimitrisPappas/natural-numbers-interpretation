@@ -8,7 +8,7 @@ public class Main {
         AmbiguitiesService ambiguitiesService = new AmbiguitiesService();
 
         // Get a single sequence of numbers
-        singleNumberSequenceService.getSingleNumberSequence();
+//        singleNumberSequenceService.getSingleNumberSequence();
 
         // Identify natural number ambiguities
         ambiguitiesService.getAmbiguities();
