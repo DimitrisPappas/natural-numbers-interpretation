@@ -1,4 +1,4 @@
-package org.example;
+package org.dspappas;
 
 import org.jetbrains.annotations.NotNull;
 
