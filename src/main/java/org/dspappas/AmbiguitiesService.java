@@ -33,7 +33,12 @@ public class AmbiguitiesService {
         return results;
     }
 
-    private void recursiveVariations(List<String> numbers, List<String> results, int index, String currentVariation) {
+    private void recursiveVariations(
+            List<String> numbers,
+            List<String> results,
+            int index,
+            String currentVariation
+    ) {
         if (index >= numbers.size()) {
             results.add(currentVariation);
             return;
@@ -48,7 +53,11 @@ public class AmbiguitiesService {
         }
     }
 
-    private List<String> getVariations(String originalNumber, List<String> numbers, int index) {
+    private List<String> getVariations(
+            String originalNumber,
+            List<String> numbers,
+            int index
+    ) {
         List<String> variations = new ArrayList<>();
         variations.add(originalNumber);
 
@@ -60,58 +69,39 @@ public class AmbiguitiesService {
         return variations;
     }
 
-    private List<String> getTwoDigitVariations(String originalNumber, List<String> numbers, int index) {
+    private List<String> getTwoDigitVariations(
+            String originalNumber,
+            List<String> numbers,
+            int index
+    ) {
         List<String> twoDigitVariations = new ArrayList<>();
-        if (!twoDigitsAreZeros(originalNumber)) {
-            if (canDropZero(originalNumber, numbers, index)) {
-                String dropZero = originalNumber.substring(0,1);
-                twoDigitVariations.add(dropZero);
-            }
-            if (canInsertZero(originalNumber)) {
+        if (!originalNumber.equals("00")) {
+            if (originalNumber.endsWith("0")) {
+                if (index + 1 < numbers.size()) {
+                    String nextNumber = numbers.get(index+1);
+                    if (nextNumber.length() == 1) {
+                        // Drop 0
+                        String dropZero = originalNumber.substring(0,1);
+                        twoDigitVariations.add(dropZero);
+                    }
+                }
+            } else if (!originalNumber.startsWith("0")) {
+                // Insert 0
                 String firstDigit = originalNumber.substring(0, 1);
                 String secondDigit = originalNumber.substring(1, 2);
-                String addZero = firstDigit + "0" + secondDigit;
-                twoDigitVariations.add(addZero);
+                String digits = firstDigit + "0" + secondDigit;
+                twoDigitVariations.add(digits);
             }
         }
+
         return twoDigitVariations;
     }
 
-    private Boolean twoDigitsAreZeros(String number) {
-        return number.equals("00");
-    }
-
-    private Boolean canDropZero(String number, List<String> numbers, int index) {
-        return endsWithZero(number) && ensureNextNumberHasOneDigit(numbers, index);
-    }
-
-    private Boolean canInsertZero(String number) {
-        return !endsWithZero(number) && !startsWithZero(number);
-    }
-
-    private Boolean endsWithZero(String number) {
-        return number.endsWith("0");
-    }
-
-    private Boolean startsWithZero(String number) {
-        return number.startsWith("0");
-    }
-
-    private Boolean ensureNextNumberHasOneDigit(List<String> numbers, int index) {
-        boolean result = false;
-        if (hasNextNumber(numbers, index)) {
-            result = numbers.get(index+1).length() == 1;
-        }
-        return result;
-    }
-
-    private Boolean hasNextNumber(List<String> numbers, int index) {
-        return index + 1 < numbers.size();
-    }
-
-
-
-    private List<String> getThreeDigitVariations(String originalNumber, List<String> numbers, int index) {
+    private List<String> getThreeDigitVariations(
+            String originalNumber,
+            List<String> numbers,
+            int index
+    ) {
         return Collections.emptyList();
     }
 }
