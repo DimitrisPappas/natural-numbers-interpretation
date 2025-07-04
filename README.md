@@ -1,4 +1,4 @@
-A Java application that will handle natural numbers interpretation.
+**A Java application that will handle natural numbers interpretation.**
 The application should ask the user for a number, and then present the identified number back to the user.
 The application should accept as input a sequence of numbers separated by a space char. 
 Each number in the input sequence may be up to a three digit number. 
@@ -12,7 +12,7 @@ For example, if input is: 30 2 5 58, output should be: 302558
 If input is: 2 10 69 30 6 60 4, output should be: 21069306604
 
 
-Phone number validation:
+**Phone number validation:**
 The application should state if the output number is a valid Greek telephone number.
 Assume that valid Greek phone numbers may have 10 or 14 digits. If they have 10 digits, they must start with ‘2’ or ‘69’. 
 If they have 14 digits, the must start with ‘00302’ or ‘003069’.
@@ -21,7 +21,7 @@ If input is: 2 10 69 30 6 6 4, output should be: 2106930664 [phone number: VALID
 If input is: 2 10 69 30 6 60 4, output should be: 21069306604 [phone number: INVALID]
 If input is: 0 0 30 69 74 0 9 22 52, output should be: 00306974092252 [phone number: VALID]
 
-Identify natural number ambiguities:
+**Identify natural number ambiguities:**
 The application should check for possible ambiguities in number spelling.
 For example if the input sequence contains ‘... 20 5...’ the result number may either be ‘...205...’ or ‘...25...’.
 Also if the sequence contains ‘...75...’, the result number may be: ‘...705...’ or ‘...75...’
