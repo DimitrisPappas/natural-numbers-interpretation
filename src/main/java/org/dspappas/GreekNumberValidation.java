@@ -6,7 +6,6 @@ public class GreekNumberValidation {
 
     public Boolean isValid(@NotNull String number) {
         int length = number.length();
-        System.out.println("length: " + length);
         Boolean result = false;
 
         if (length == 10) {
