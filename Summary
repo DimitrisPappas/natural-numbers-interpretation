@@ -1,0 +1,63 @@
+This Java application is a Greek phone number validation and ambiguity resolution tool. Here's what it does:
+
+- Phone Number Validation:
+
+The app validates Greek phone numbers using specific rules:
+10-digit numbers must start with "2" or "69"
+14-digit numbers must start with "00302" or "003069"
+
+
+- Two Main Operations:
+
+Single Number Sequence: Takes a sequence of numbers as input, trims the unnecessary spaces, concatenates them, and validates the result as a Greek phone number.
+
+Ambiguity Resolution: This is the more sophisticated feature that handles cases where numbers might be ambiguous due to zeros. This operation:
+Takes a list of numbers as input.
+Generates all possible interpretations by applying transformation rules.
+Validates each interpretation as a Greek phone number.
+Reports which interpretations are valid.
+
+
+- Ruleset for 2-digits variations
+
+1. Drop Trailing Zero
+    Condition: Number ends with "0" AND the next number in sequence has exactly 1 digit
+    Transformation: Remove the trailing zero
+    Example: "20" -> "2" (but only if next number is single digit)
+
+2. Insert Zero
+    Condition: Number doesn't start with "0" AND doesn't end with "0"
+    Transformation: Insert "0" between the two digits
+    Example: "23" -> "203"
+
+3. Only Zeros Case
+    If the number is "00", no transformations are applied
+
+
+- Ruleset for 3-digits variations
+
+1. Drop Middle Zero
+    Condition: Doesn't start with "0", doesn't end with "0", but has "0" in the middle position
+    Transformation: Remove the middle zero
+    Example: "203" -> "23"
+
+2. Drop Two Trailing Zeros
+    Condition: Doesn't start with "0", ends with "00", AND there's a next number in the sequence
+    Transformation: Remove both trailing zeros
+    Example: "300" -> "3" (but only if there's another number following)
+
+3. Drop One Zero at End
+    Condition: Doesn't start with "0", ends with "0" OR ends with "00", AND the next number has exactly 1 digit
+    Transformation: Remove one trailing zero
+    Examples:   "230" -> "23" (if next number is single digit)
+                "300" -> "30" (if next number is single digit)
+
+4. Starts With Zeros
+    If number is "000", starts with "00", or starts with "0", no transformations are applied
+    This prevents invalid transformations on numbers that are already leading-zero formatted
+
+- Use Case
+This appears to be designed for scenarios where phone numbers might be written with ambiguous spacing or zero placement due to user's voice recording, and you need to determine all possible valid interpretations.
+For example, if someone writes "210 30 5", it might actually represent "21035" or other variations.
+The app systematically explores all possible interpretations based on a ruleset and tells you which ones would be valid Greek phone numbers.
+

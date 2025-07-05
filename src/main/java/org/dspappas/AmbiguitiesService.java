@@ -1,7 +1,6 @@
 package org.dspappas;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AmbiguitiesService {
@@ -77,6 +76,27 @@ public class AmbiguitiesService {
         return twoDigitVariations;
     }
 
+    private List<String> getThreeDigitVariations(String originalNumber, List<String> numbers, int index) {
+        List<String> threeDigitVariations = new ArrayList<>();
+        if (!threeDigitsStartWithZeros(originalNumber)) {
+            if (canDropZeroInMiddle(originalNumber)) {
+                String firstDigit = originalNumber.substring(0,1);
+                String lastDigit = originalNumber.substring(2,3);
+                String dropZero = firstDigit + lastDigit;
+                threeDigitVariations.add(dropZero);
+            }
+            if (canDropTwoZerosAtEnd(originalNumber, numbers, index)) {
+                String firstDigit = originalNumber.substring(0,1);
+                threeDigitVariations.add(firstDigit);
+            }
+            if (canDropOneZeroAtEnd(originalNumber, numbers, index)) {
+                String firstAndSecondDigit = originalNumber.substring(0,2);
+                threeDigitVariations.add(firstAndSecondDigit);
+            }
+        }
+        return threeDigitVariations;
+    }
+
     private Boolean twoDigitsAreZeros(String number) {
         return number.equals("00");
     }
@@ -109,9 +129,23 @@ public class AmbiguitiesService {
         return index + 1 < numbers.size();
     }
 
+    private Boolean threeDigitsStartWithZeros(String number) {
+        return number.equals("000") || number.startsWith("00") || number.startsWith("0");
+    }
 
+    private Boolean canDropZeroInMiddle(String number) {
+        return !number.startsWith("0") && !number.endsWith("0") && number.charAt(1) == '0';
+    }
 
-    private List<String> getThreeDigitVariations(String originalNumber, List<String> numbers, int index) {
-        return Collections.emptyList();
+    private Boolean canDropTwoZerosAtEnd(String number, List<String> numbers, int index) {
+        return endsWithTwoZeros(number) && hasNextNumber(numbers, index);
+    }
+
+    private Boolean endsWithTwoZeros(String number) {
+        return !number.startsWith("0") && number.endsWith("00");
+    }
+
+    private Boolean canDropOneZeroAtEnd(String number, List<String> numbers, int index) {
+        return !number.startsWith("0") && (endsWithTwoZeros(number) || endsWithZero(number)) && ensureNextNumberHasOneDigit(numbers, index);
     }
 }
