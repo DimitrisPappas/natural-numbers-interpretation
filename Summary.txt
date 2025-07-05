@@ -56,8 +56,8 @@ Reports which interpretations are valid.
     If number is "000", starts with "00", or starts with "0", no transformations are applied
     This prevents invalid transformations on numbers that are already leading-zero formatted
 
+
 - Use Case
 This appears to be designed for scenarios where phone numbers might be written with ambiguous spacing or zero placement due to user's voice recording, and you need to determine all possible valid interpretations.
 For example, if someone writes "210 30 5", it might actually represent "21035" or other variations.
 The app systematically explores all possible interpretations based on a ruleset and tells you which ones would be valid Greek phone numbers.
-
